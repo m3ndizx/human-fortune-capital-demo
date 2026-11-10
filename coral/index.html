@@ -5,18 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Human Fortune Capital | פנסיה, ביטוח ותכנון פיננסי</title>
 <meta name="description" content="Human Fortune Capital מלווה משפחות ועסקים בניהול פנסיה, ביטוח ותכנון פיננסי, בשפה פשוטה ועם פגישת היכרות אישית.">
+<link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+<div class="sentinel" data-sentinel></div>
 <a class="skip" href="#main">דילוג לתוכן</a>
 
 <header class="bar">
   <div class="container">
     <a class="mark latin" href="#top" aria-label="Human Fortune Capital, לראש הדף">Human Fortune Capital</a>
-    <a class="btn btn--card" href="#book">קביעת פגישה</a>
+    <nav class="links" data-spy aria-label="ראשי">
+      <a href="#services">שירותים</a>
+      <a href="#calc">מחשבון</a>
+      <a href="#faq">שאלות</a>
+    </nav>
+    <div class="acts">
+      <a class="btn btn--card book" href="#book">קביעת פגישה</a>
+      <button class="btn btn--card menu-btn" type="button" popovertarget="menu" aria-label="תפריט">תפריט</button>
+    </div>
   </div>
+  <nav class="menu" id="menu" popover aria-label="תפריט">
+    <ul>
+      <li><a href="#services">שירותים</a></li>
+      <li><a href="#calc">מחשבון</a></li>
+      <li><a href="#faq">שאלות</a></li>
+      <li><a href="#contact">יצירת קשר</a></li>
+    </ul>
+  </nav>
 </header>
 
 <main id="main">
@@ -26,17 +45,22 @@
         <h1>מסדרים את הכסף, בשפה פשוטה</h1>
         <p class="lead">פנסיה, ביטוח ותכנון פיננסי למשפחות ולעסקים.</p>
       </div>
-      <form class="req stock" id="book" data-endpoint="" novalidate>
+      <form class="req stock" id="book" data-endpoint="" data-nodock novalidate>
         <h2>במה נתחיל?</h2>
         <fieldset class="groove"><legend>נושא הפגישה</legend>
           <input type="radio" name="topic" id="o1" value="pension" checked><label for="o1">פנסיה</label>
           <input type="radio" name="topic" id="o2" value="insurance"><label for="o2">ביטוח</label>
           <input type="radio" name="topic" id="o3" value="planning"><label for="o3">תכנון</label>
         </fieldset>
-        <div class="f"><label for="name">שם מלא</label><input id="name" name="name" type="text" autocomplete="name" required></div>
-        <div class="f"><label for="phone">טלפון</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required></div>
+        <div class="f"><label for="name">שם מלא</label><input id="name" name="name" type="text" autocomplete="name" required aria-required="true" aria-describedby="e-name" data-err="כתבו שם מלא, כדי שנדע למי לחזור."><p class="err" id="e-name"></p></div>
+        <div class="f"><label for="phone">טלפון</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="050-1234567" required aria-required="true" aria-describedby="e-phone" data-err="מספר הטלפון נראה חלקי. כתבו לפחות תשע ספרות."><p class="err" id="e-phone"></p></div>
+        <fieldset class="groove groove--when"><legend>מתי נוח לכם?</legend>
+          <input type="radio" name="when" id="w1" value="morning"><label for="w1">בוקר</label>
+          <input type="radio" name="when" id="w2" value="noon"><label for="w2">צהריים</label>
+          <input type="radio" name="when" id="w3" value="evening"><label for="w3">ערב</label>
+        </fieldset>
         <button class="btn btn--ink" type="submit">קביעת פגישת היכרות</button>
-        <p class="help" id="help" aria-live="polite"></p>
+        <p class="help" data-help aria-live="polite"></p>
       </form>
     </div>
   </div>
@@ -58,8 +82,41 @@
     </figure>
   </section>
 
-  <section class="board" id="after">
+  <section class="board" id="calc">
     <div class="container grid">
+      <div class="head">
+        <h2>כמה אפשר לצבור?</h2>
+        <p class="lead">הזיזו את המחוונים וראו מה אפשרי.</p>
+      </div>
+      <form class="calc" data-calc aria-label="מחשבון חיסכון">
+        <div class="rng">
+          <div class="row"><label for="c-deposit">הפקדה חודשית</label><output for="c-deposit" data-v="deposit">1,000 ₪</output></div>
+          <input id="c-deposit" name="deposit" type="range" min="200" max="10000" step="100" value="1000">
+        </div>
+        <div class="rng">
+          <div class="row"><label for="c-years">מספר שנים</label><output for="c-years" data-v="years">25 שנים</output></div>
+          <input id="c-years" name="years" type="range" min="5" max="40" step="1" value="25">
+        </div>
+        <div class="rng">
+          <div class="row"><label for="c-rate">תשואה שנתית משוערת</label><output for="c-rate" data-v="rate">4%</output></div>
+          <input id="c-rate" name="rate" type="range" min="0" max="8" step="0.5" value="4">
+        </div>
+        <div class="out stock">
+          <p class="out-label">סכום משוער בסוף התקופה</p>
+          <p class="out-fig figure" data-out="total">‏514,130 ‏₪</p>
+          <dl class="out-rows">
+            <dt>הפקדות</dt><dd class="figure" data-out="dep">‏300,000 ‏₪</dd>
+            <dt>תוספת מהתשואה</dt><dd class="figure" data-out="gain">‏214,130 ‏₪</dd>
+          </dl>
+          <p class="note">להמחשה בלבד. זו אינה תחזית, ואינה כוללת דמי ניהול, מס או אינפלציה.</p>
+        </div>
+        <p class="visually-hidden" data-live aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="after" id="after">
+    <div class="container">
       <h2>מה יוצא מהפגישה</h2>
       <ol>
         <li><h3>תמונת מצב</h3><p>מה יש לכם היום בפנסיה ובביטוח, במקום אחד.</p></li>
@@ -69,12 +126,24 @@
     </div>
   </section>
 
+  <section class="faq" id="faq">
+    <div class="container grid">
+      <div class="head"><h2>שאלות לפני הפגישה</h2></div>
+      <div class="qa">
+        <details name="faq" open><summary>מה קורה בפגישה הראשונה?</summary><p>מדברים על המשפחה, ההכנסות והיעדים, ובודקים יחד את הפנסיה והביטוחים שכבר יש לכם.</p></details>
+        <details name="faq"><summary>צריך להביא מסמכים?</summary><p>כדאי להביא דוח פנסיה עדכני ופוליסות ביטוח, אם יש. אם אין, מתחילים מהשיחה.</p></details>
+        <details name="faq"><summary>זה מתאים גם לעסק?</summary><p>כן. יש התאמה למעסיקים ולבעלי עסקים, להסדרי עובדים ולביטוח של העסק.</p></details>
+        <details name="faq"><summary>כל כמה זמן מעדכנים את התוכנית?</summary><p>בכל שינוי משמעותי בחיים, ובדיקה קבועה פעם בשנה.</p></details>
+      </div>
+    </div>
+  </section>
+
   <section class="close" id="contact">
     <div class="container grid">
       <figure class="pic" data-slot="home" data-alt="בית משפחתי או כניסה לבית">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/342_East_Church_Street_Frederick_MD1.jpg/1280px-342_East_Church_Street_Frederick_MD1.jpg" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/342_East_Church_Street_Frederick_MD1.jpg/960px-342_East_Church_Street_Frederick_MD1.jpg 960w, https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/342_East_Church_Street_Frederick_MD1.jpg/1280px-342_East_Church_Street_Frederick_MD1.jpg 1280w, https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/342_East_Church_Street_Frederick_MD1.jpg/1920px-342_East_Church_Street_Frederick_MD1.jpg 1920w" sizes="(min-width: 60rem) 50vw, 100vw" width="5874" height="5807" alt="בית עירוני מלבנים בהירות עם תריסים ירוקים" style="object-position: 50% 50%" loading="lazy">
       </figure>
-      <div class="copy">
+      <div class="copy" data-nodock>
         <h2>נשמח לשמוע מכם</h2>
         <dl class="facts">
           <dt>טלפון</dt><dd><span class="fill" data-fill="phone">מספר הטלפון של המשרד</span></dd>
@@ -86,10 +155,12 @@
   </section>
 </main>
 
-<footer>
+<div class="dock"><a class="btn btn--ink" href="#book">קביעת פגישת היכרות</a></div>
+
+<footer data-nodock>
   <div class="container">
     <a class="mast latin" href="#top" aria-label="Human Fortune Capital, לראש הדף">Human Fortune Capital</a>
-    <nav aria-label="בתחתית הדף"><ul><li><a href="#services">שירותים</a></li><li><a href="#after">מה יוצא מהפגישה</a></li><li><a href="#contact">יצירת קשר</a></li></ul></nav>
+    <nav aria-label="בתחתית הדף"><ul><li><a href="#services">שירותים</a></li><li><a href="#calc">מחשבון</a></li><li><a href="#faq">שאלות</a></li><li><a href="#contact">יצירת קשר</a></li></ul></nav>
     <div class="legal">
       <p>המידע באתר הוא כללי ואינו מהווה ייעוץ אישי בנושאי פנסיה, ביטוח או השקעות.</p>
       <p data-credits>צילומים: <a href="https://commons.wikimedia.org/wiki/File:Family_walking_at_the_evening,_cox%27s_bazar_.jpg">Ferdous</a> (CC BY-SA 3.0, Wikimedia Commons), <a href="https://commons.wikimedia.org/wiki/File:342_East_Church_Street_Frederick_MD1.jpg">Acroterion</a> (CC BY-SA 4.0, Wikimedia Commons)</p>
@@ -99,19 +170,105 @@
 </footer>
 
 <script>
-document.querySelectorAll('form[data-endpoint]').forEach((form) => {
-  const help = form.querySelector('[aria-live]');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const bad = [...form.querySelectorAll('input[required]')].find((i) => !i.value.trim());
-    form.querySelectorAll('input[required]').forEach((i) => i.toggleAttribute('aria-invalid', !i.value.trim()));
-    if (bad) { help.textContent = 'חסרים פרטים. מלאו שם ומספר טלפון כדי שנוכל לחזור אליכם.'; bad.focus(); return; }
-    if (!form.dataset.endpoint) { help.textContent = 'הטופס עדיין לא מחובר, ולכן לא נשלח דבר.'; return; }
-    fetch(form.dataset.endpoint, { method: 'POST', body: new FormData(form) })
-      .then((r) => { help.textContent = r.ok ? 'הבקשה נשלחה. נחזור אליכם בהקדם.' : 'השליחה לא הצליחה. נסו שוב בעוד דקה.'; })
-      .catch(() => { help.textContent = 'השליחה לא הצליחה. נסו שוב בעוד דקה.'; });
+(() => {
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const io = 'IntersectionObserver' in window;
+
+  // menu: close the popover after a link is chosen
+  const menu = $('#menu');
+  if (menu && menu.hidePopover) $$('a', menu).forEach((a) => a.addEventListener('click', () => menu.hidePopover()));
+
+  // scrollspy: mark the nav link of the section in view
+  const links = $$('[data-spy] a[href^="#"]');
+  if (io && links.length) {
+    const spy = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      links.forEach((a) => (a.getAttribute('href') === '#' + e.target.id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
+    }), { rootMargin: '-40% 0px -55% 0px' });
+    new Set(links.map((a) => $(a.getAttribute('href')))).forEach((s) => s && spy.observe(s));
+  }
+
+  // nav gets a shadow once the page has scrolled
+  const bar = $('.bar'), sentinel = $('[data-sentinel]');
+  if (io && bar && sentinel) new IntersectionObserver(([e]) => bar.classList.toggle('is-stuck', !e.isIntersecting)).observe(sentinel);
+
+  // mobile dock: shows the booking action whenever no booking surface is on screen
+  const dock = $('.dock');
+  if (io && dock) {
+    dock.setAttribute('inert', '');
+    const seen = new Set();
+    const sync = () => { const on = seen.size === 0; dock.classList.toggle('is-on', on); dock.toggleAttribute('inert', !on); };
+    const watch = new IntersectionObserver((es) => { es.forEach((e) => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target))); sync(); });
+    $$('[data-nodock]').forEach((el) => watch.observe(el));
+  }
+
+  // tabs (switcher): every panel shows without script
+  $$('[data-switch]').forEach((root) => {
+    const tabs = $$('[role=tab]', root), panels = tabs.map((t) => document.getElementById(t.getAttribute('aria-controls')));
+    const pick = (i) => tabs.forEach((t, j) => { t.setAttribute('aria-selected', i === j); t.tabIndex = i === j ? 0 : -1; panels[j].hidden = i !== j; });
+    pick(0);
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => pick(i));
+      t.addEventListener('keydown', (e) => {
+        const d = { ArrowRight: -1, ArrowLeft: 1 }[e.key]; // RTL: right arrow is the previous tab
+        if (!d) return; e.preventDefault();
+        const n = (i + d + tabs.length) % tabs.length; pick(n); tabs[n].focus();
+      });
+    });
   });
-});
+
+  // calculator: future value of a monthly deposit, shown as an illustration only
+  $$('[data-calc]').forEach((f) => {
+    const cur = new Intl.NumberFormat('he-IL', { style: 'currency', currency: 'ILS', maximumFractionDigits: 0 });
+    const num = new Intl.NumberFormat('he-IL');
+    const show = { deposit: (v) => cur.format(v), years: (v) => num.format(v) + ' שנים', rate: (v) => num.format(v) + '%' };
+    const live = $('[data-live]', f); let t;
+    const calc = () => {
+      for (const k of Object.keys(show)) {
+        const el = f.elements[k];
+        el.style.setProperty('--pct', ((el.value - el.min) / (el.max - el.min)) * 100 + '%');
+        $(`[data-v="${k}"]`, f).textContent = show[k](+el.value);
+      }
+      const p = +f.elements.deposit.value, n = +f.elements.years.value * 12, i = +f.elements.rate.value / 100 / 12;
+      const total = i ? (p * ((1 + i) ** n - 1)) / i : p * n, dep = p * n;
+      $('[data-out=total]', f).textContent = cur.format(total);
+      $('[data-out=dep]', f).textContent = cur.format(dep);
+      $('[data-out=gain]', f).textContent = cur.format(total - dep);
+      clearTimeout(t); t = setTimeout(() => { if (live) live.textContent = 'סכום משוער בסוף התקופה: ' + cur.format(total); }, 500);
+    };
+    f.addEventListener('input', calc); f.addEventListener('submit', (e) => e.preventDefault()); calc();
+  });
+
+  // booking forms: validate on blur once touched, then on input; nothing is sent until an endpoint is set
+  const rules = { name: (v) => v.trim().length >= 2, phone: (v) => v.replace(/\D/g, '').length >= 9 };
+  $$('form[data-endpoint]').forEach((form) => {
+    const help = $('[data-help]', form);
+    const fields = $$('input[data-err]', form);
+    const check = (inp) => {
+      const ok = rules[inp.name](inp.value);
+      inp.toggleAttribute('aria-invalid', !ok);
+      $('#' + inp.getAttribute('aria-describedby')).textContent = ok ? '' : inp.dataset.err;
+      return ok;
+    };
+    fields.forEach((inp) => {
+      let touched = false;
+      inp.addEventListener('blur', () => { touched = true; check(inp); });
+      inp.addEventListener('input', () => touched && check(inp));
+    });
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const bad = fields.filter((i) => !check(i));
+      if (bad.length) { help.textContent = ''; bad[0].focus(); return; }
+      if (!form.dataset.endpoint) { help.textContent = 'הטופס עדיין לא מחובר, ולכן לא נשלח דבר.'; return; }
+      const btn = $('[type=submit]', form); btn.setAttribute('aria-busy', 'true'); btn.setAttribute('aria-disabled', 'true');
+      fetch(form.dataset.endpoint, { method: 'POST', body: new FormData(form) })
+        .then((r) => { help.textContent = r.ok ? 'הבקשה נשלחה. נחזור אליכם בהקדם.' : 'השליחה לא הצליחה. נסו שוב בעוד דקה.'; })
+        .catch(() => { help.textContent = 'השליחה לא הצליחה. נסו שוב בעוד דקה.'; })
+        .finally(() => { btn.removeAttribute('aria-busy'); btn.removeAttribute('aria-disabled'); });
+    });
+  });
+})();
+
 </script>
 <script>window.hallmarkSlots = (m) => { for (const [k, v] of Object.entries(m)) { const s = document.querySelector(`[data-slot="${k}"]`); if (!s) continue; const im = new Image(); im.src = typeof v === 'string' ? v : v.src; im.alt = (typeof v === 'object' && v.alt) || s.dataset.alt || ''; s.querySelectorAll(':scope > img').forEach((o) => o.remove()); s.prepend(im); } };
 document.querySelectorAll('[data-slot] img').forEach((i) => { if (i.complete && !i.naturalWidth) i.remove(); else i.addEventListener('error', () => i.remove(), { once: true }); });</script>
